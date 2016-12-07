@@ -12,7 +12,15 @@ use HTTP::Request::Common;
 {
     package MyApp;
     use Dancer2;
+
+    use Dancer2::Plugin::ParamTypes;
     use Dancer2::Plugin::Test::ParamTypes;
+
+    # you could also have a shortcut of the form
+    # use Dancer2::Plugin::ParamTypes libraries => [qw/
+    #       +Dancer2::Plugin::Test::ParamTypes
+    #       Default   <-- would resolve into Dancer2::Plugin::ParamTypes::Default, natch
+    # /]
 
     get '/' => with_types [
         [ 'query', 'id', 'Int' ],
